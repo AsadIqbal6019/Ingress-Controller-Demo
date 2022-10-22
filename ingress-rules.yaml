@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: springboot-app-ingress
+  # namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: my-demo-app.com
+      http:
+        paths:
+          # - path: /
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                # name: kubernetes-dashboard
+                name: springboot-app-svc
+                port:
+                  number: 80
+          - path: /api/demo
+            pathType: Prefix
+            backend:
+              service:
+                name: springboot-app-svc
+                port:
+                  number: 80

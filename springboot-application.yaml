@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-ingress-demo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: springboot-ingress-demo
+  replicas: 2
+  template:
+    metadata:
+      name: springboot-ingress-demo
+      labels:
+        app: springboot-ingress-demo
+    spec:
+      containers:
+        - name: springboot-ingress-demo
+          image: asadiqbal6019/java-demo-app:1.0
+          ports:
+            - containerPort: 8080
